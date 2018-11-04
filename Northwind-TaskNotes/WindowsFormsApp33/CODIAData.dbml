@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Industryolog_ERP" Class="CODIADataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-9O1LVRH\SQLEXPRESS;Initial Catalog=Industryolog_ERP;Integrated Security=True" SettingsObjectName="WindowsFormsApp33.Properties.Settings" SettingsPropertyName="Industryolog_ERPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TaskPersonal" Member="TaskPersonal">
+    <Type Name="TaskPersonal">
+      <Column Name="Task_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Task_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Task_Personal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Task_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Personal_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_Surname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Personel_Picture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personal" Member="Personal">
+    <Type Name="Personal">
+      <Column Name="Personal_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Team_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_Surname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_Job" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Personal_University" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Editors" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Personel_Picture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ADT_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gorev_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Kurumsalmail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Kisiselmail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Telefon" Type="System.String" DbType="NVarChar(11)" CanBeNull="true" />
+      <Association Name="Personal_TaskNotes" Member="TaskNotes" ThisKey="Personal_Id" OtherKey="Task_Personal" Type="TaskNotes" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaskNotes" Member="TaskNotes">
+    <Type Name="TaskNotes">
+      <Column Name="Task_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Task_Personal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Task_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Task_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Personal_TaskNotes" Member="Personal" ThisKey="Task_Personal" OtherKey="Personal_Id" Type="Personal" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
